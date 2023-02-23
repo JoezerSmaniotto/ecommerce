@@ -1,5 +1,4 @@
-import { HeaderContainer } from "./styles"
-
+import { HeaderContainer } from './styles'
 
 export function Footer() {
   return (

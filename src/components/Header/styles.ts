@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { CartButton } from '../CardButton'
 
-
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
