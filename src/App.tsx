@@ -1,5 +1,9 @@
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { CoffeeContextProvider } from './contexts/CoffeeContext'
 import { Router } from './Router'
 
 import { GlobalStyle } from './styles/global'
@@ -9,7 +13,21 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <Router />
+        <CoffeeContextProvider>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3 * 1000} // 3 seconds
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          <Router />
+        </CoffeeContextProvider>
         <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>
