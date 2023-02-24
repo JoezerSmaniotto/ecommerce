@@ -14,6 +14,7 @@
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-radio-group": "^1.0.0",
     "@radix-ui/react-toggle": "^1.0.0",
+    "axios": "^1.3.4",
     "date-fns": "^2.29.3",
     "immer": "^9.0.18",
     "phosphor-react": "^1.4.1",

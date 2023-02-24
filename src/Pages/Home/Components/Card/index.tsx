@@ -14,8 +14,9 @@ import {
   IAvailableCoffee,
   CoffeeContext,
 } from '../../../../contexts/CoffeeContext'
-import { formatCoffeePrice } from '../../../../components/helpers/formatCoffeePrice'
+
 import { Counter } from '../../../../components/Counter/index'
+import { formatCoffeePrice } from '../../../../helpers/formatCoffeePrice'
 
 interface CardProps {
   availableCoffee: IAvailableCoffee

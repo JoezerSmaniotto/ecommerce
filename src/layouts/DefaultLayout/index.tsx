@@ -9,7 +9,7 @@ export function DefaultLayout() {
     <LayoutContainer>
       <Header />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </LayoutContainer>
   )
 }
