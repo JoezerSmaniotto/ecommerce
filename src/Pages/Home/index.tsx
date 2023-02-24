@@ -54,9 +54,7 @@ export function Home() {
           </ContainerFeatures>
         </ContentBanner>
         <img src={bannerCoffee} alt="" />
-        <Dialog.Root open={true}>
-          <RegisterSeller />
-        </Dialog.Root>
+        <RegisterSeller />
       </ContainerHome>
       <MainCoffee />
     </>

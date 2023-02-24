@@ -4,6 +4,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { CoffeeContextProvider } from './contexts/CoffeeContext'
+import { SellerContextProvider } from './contexts/SellerContext'
+
 import { Router } from './Router'
 
 import { GlobalStyle } from './styles/global'
@@ -13,21 +15,23 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CoffeeContextProvider>
-          <ToastContainer
-            position="bottom-right"
-            autoClose={3 * 1000} // 3 seconds
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <Router />
-        </CoffeeContextProvider>
+        <SellerContextProvider>
+          <CoffeeContextProvider>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3 * 1000} // 3 seconds
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+            <Router />
+          </CoffeeContextProvider>
+        </SellerContextProvider>
         <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>
