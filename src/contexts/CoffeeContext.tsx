@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode, useReducer } from 'react'
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useReducer,
+  useContext,
+} from 'react'
 import {
   addCoffeeInCartAction,
   clearCoffeesInCartAction,
@@ -6,6 +12,8 @@ import {
   updateCoffeeInCartByIdAction,
 } from '../reducers/CoffeeInCart/actions'
 import { coffessCartReducer } from '../reducers/CoffeeInCart/reducers'
+import { IPurchase, PurchaseContext } from './PurchaseContextProvider'
+import { SellerContext } from './SellerContext'
 
 export interface IAvailableCoffee {
   id: string
@@ -44,6 +52,9 @@ export const CoffeeContext = createContext({} as CoffeeContextType)
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
+  const { id, setId, updatePurchase } = useContext(PurchaseContext)
+  const { seller } = useContext(SellerContext)
+
   // eslint-disable-next-line no-unused-vars
   const [listOfAvailableCoffees, setListOfAvailableCoffees] = useState<
     IAvailableCoffee[]
@@ -174,6 +185,15 @@ export function CoffeeContextProvider({
   }
 
   function clearCoffeesInCart() {
+    const newDate: IPurchase = {
+      id,
+      data: new Date(),
+      seller,
+      order: coffeesInCart,
+      status: 'Aguardando pagamento',
+    }
+    updatePurchase(newDate)
+    setId(id + 1)
     dispatch(clearCoffeesInCartAction())
   }
 

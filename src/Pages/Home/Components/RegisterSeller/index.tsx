@@ -94,6 +94,7 @@ export function RegisterSeller() {
                 return (
                   <FormInputWrapper>
                     <FormInput
+                      mask="999.999.999-99"
                       placeholder="CPF"
                       value={field.value}
                       onChange={(event) => {

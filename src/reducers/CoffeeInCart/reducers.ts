@@ -9,15 +9,15 @@ export function coffessCartReducer(state: ICoffee[], action: any) {
       // verificar se o café já está no carrinho, se tiver, aumentar somente o amount, se não adicionar ao carrinho
       let amount = 0
       let coffeeIsAlreadyInCart = false
-      console.log('state: ', state)
-      console.log('action: ', action)
+      // console.log('state: ', state)
+      // console.log('action: ', action)
       state.forEach((coffee) => {
-        console.log('coffee', coffee)
-        console.log('availableCoffee', action.payload.availableCoffee)
+        // console.log('coffee', coffee)
+        // console.log('availableCoffee', action.payload.availableCoffee)
 
         if (coffee.id === action.payload.availableCoffee.id) {
           amount = action.payload.amount + coffee.amount
-          console.log(amount)
+          // console.log(amount)
 
           coffeeIsAlreadyInCart = true
         }

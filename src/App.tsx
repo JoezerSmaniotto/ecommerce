@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { CoffeeContextProvider } from './contexts/CoffeeContext'
 import { SellerContextProvider } from './contexts/SellerContext'
 import { CheckoutDataContextProvider } from './contexts/CheckoutDataContext'
+import { PurchaseContextProvider } from './contexts/PurchaseContextProvider'
 
 import { Router } from './Router'
 
@@ -16,25 +17,27 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <SellerContextProvider>
-          <CoffeeContextProvider>
-            <CheckoutDataContextProvider>
-              <ToastContainer
-                position="bottom-right"
-                autoClose={3 * 1000} // 3 seconds
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
-              <Router />
-            </CheckoutDataContextProvider>
-          </CoffeeContextProvider>
-        </SellerContextProvider>
+        <PurchaseContextProvider>
+          <SellerContextProvider>
+            <CoffeeContextProvider>
+              <CheckoutDataContextProvider>
+                <ToastContainer
+                  position="bottom-right"
+                  autoClose={3 * 1000} // 3 seconds
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
+                <Router />
+              </CheckoutDataContextProvider>
+            </CoffeeContextProvider>
+          </SellerContextProvider>
+        </PurchaseContextProvider>
         <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>
