@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import Swal from 'sweetalert2'
 import axios, { AxiosError } from 'axios'
 import {
   Bank,
@@ -114,30 +115,37 @@ export function Checkout() {
 
   const isConfirmButtonDisabled = sumOfCoffeesPrice === 0
 
-  function handleConfirmOrder(data: CheckoutFormInputs) {
-    if (confirm('Confirmar o envio do pedido?')) {
-      setCheckoutData({
-        CEP: data.CEP,
-        city: data.city,
-        district: data.district,
-        number: data.number,
-        paymentMethod: data.paymentMethod,
-        street: data.street,
-        UF: data.UF,
-        complement: data.complement,
-        cost: {
-          deliveryCost,
-          subtotal: sumOfCoffeesPrice,
-          totalCost,
-        },
-      })
+  async function handleConfirmOrder(data: CheckoutFormInputs) {
+    Swal.fire({
+      title: 'Confirmar o envio do pedido?',
+      showCancelButton: 'Cancelar',
+      confirmButtonText: 'Salvar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Salvo!', '', 'success')
+        setCheckoutData({
+          CEP: data.CEP,
+          city: data.city,
+          district: data.district,
+          number: data.number,
+          paymentMethod: data.paymentMethod,
+          street: data.street,
+          UF: data.UF,
+          complement: data.complement,
+          cost: {
+            deliveryCost,
+            subtotal: sumOfCoffeesPrice,
+            totalCost,
+          },
+        })
 
-      clearCoffeesInCart()
+        clearCoffeesInCart()
 
-      localStorageManager.setItem('@coffee-delivery:cep-1.0.0', data.CEP)
+        localStorageManager.setItem('@coffee-delivery:cep-1.0.0', data.CEP)
 
-      navigate('/searchOrder')
-    }
+        navigate('/searchOrder')
+      }
+    })
   }
 
   const cepValue = watch('CEP')

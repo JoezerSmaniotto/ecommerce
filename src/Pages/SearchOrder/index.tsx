@@ -1,7 +1,8 @@
-import { useState, ChangeEvent, useEffect, useContext } from 'react'
-import { ContainerSearchOrder, ContainerSearch } from './styles'
+import { useState, ChangeEvent, useContext, useEffect } from 'react'
+import { ContainerSearchOrder, ContainerSearch, ContainerSales } from './styles'
 import { Input } from '../../components/Input/index'
 import { PurchaseContext } from '../../contexts/PurchaseContextProvider'
+import { CardSale } from './Components/CardSale'
 
 export function SearchOrder() {
   const [filterOrder, setFilterOrder] = useState('')
@@ -11,9 +12,15 @@ export function SearchOrder() {
     setFilterOrder(event.target.value)
   }
 
-  useEffect(() => {
-    console.log('purchase: ', purchase)
-  }, [purchase])
+  const filterPurchase =
+    purchase?.length > 0
+      ? purchase.filter((item) => {
+          if (item.id === Number(filterOrder)) {
+            return item
+          }
+        })
+      : []
+
   return (
     <ContainerSearchOrder>
       <ContainerSearch>
@@ -23,6 +30,18 @@ export function SearchOrder() {
           value={filterOrder}
           onChange={handleSearchOrderId}
         />
+
+        <ContainerSales>
+          {purchase?.length > 0 &&
+            filterPurchase?.length === 0 &&
+            purchase.map((item) => {
+              return <CardSale key={item.id} dataCardSale={item} />
+            })}
+          {filterPurchase?.length > 0 &&
+            filterPurchase.map((item) => {
+              return <CardSale key={item.id} dataCardSale={item} />
+            })}
+        </ContainerSales>
       </ContainerSearch>
     </ContainerSearchOrder>
   )

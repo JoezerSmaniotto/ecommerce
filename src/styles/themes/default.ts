@@ -1,6 +1,8 @@
 export const defaultTheme = {
   white: '#FFF',
   error: '#dc2626',
+  success: '#08f26e',
+  cancel: 'tomato',
 
   background: '#FAFAFA',
 
