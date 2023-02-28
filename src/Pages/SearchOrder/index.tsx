@@ -23,9 +23,10 @@ export function SearchOrder() {
 
   return (
     <ContainerSearchOrder>
+      <h1>Vendas</h1>
       <ContainerSearch>
         <Input
-          placeholder="Informe o id Compra"
+          placeholder="Informe o id venda a ser buscado"
           type="text"
           value={filterOrder}
           onChange={handleSearchOrderId}
