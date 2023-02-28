@@ -118,8 +118,9 @@ export function Checkout() {
   async function handleConfirmOrder(data: CheckoutFormInputs) {
     Swal.fire({
       title: 'Confirmar o envio do pedido?',
-      showCancelButton: 'Cancelar',
-      confirmButtonText: 'Salvar',
+      showCancelButton: true,
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Salvo!', '', 'success')
